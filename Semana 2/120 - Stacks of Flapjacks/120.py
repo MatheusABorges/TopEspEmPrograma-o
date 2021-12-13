@@ -1,6 +1,11 @@
 from pilha import Pilha
 
 
+def toInt(List):
+    intList = []
+    for i in List:
+        intList.append(int(i))
+    return intList
 
 #input
 stackInputLine = None
@@ -10,11 +15,11 @@ try:
 except EOFError:
     exit()
     
-    
+
 while(stackInputLine != ''):
     
     stack = Pilha()
-    stack.pushListReverse(stackInputLine.split(' '))
+    stack.pushListReverse(toInt(stackInputLine.split(' ')))
     stacks.append(stack)
     
     try:
@@ -25,12 +30,12 @@ while(stackInputLine != ''):
 #endInput
 
 # stack = Pilha()
-# stack.pushListReverse([4, 21, 8, 11, 23, 5, 3, 20, 26, 7, 12, 1, 25, 10, 2, 24, 19, 17, 13, 22, 27, 14, 9, 15, 6, 16, 18])
+# stack.pushListReverse([20, 9, 3, 13, 5, 19, 1, 18, 12, 11, 15, 7, 10, 14, 8, 4, 17, 6, 2, 16])
 # stacks = [stack]
 
 
 for i in stacks:
-    i.print()
+    i.printSpaced()
     n = i.size
     size = i.size
     moves = []    
@@ -45,7 +50,11 @@ for i in stacks:
         
         if(pos == 0):
             i.dumpIntoList(tempList, n - pos)
-            moves.append(size - (n-pos) + 1)
+            moves.append(size - n + 1)
+            # print(size)
+            # print(n)
+            # print(pos)
+            # print("")
             i.pushList(tempList)
 
             
@@ -53,22 +62,27 @@ for i in stacks:
             
             i.dumpIntoList(tempList, pos+1)
             moves.append(size - pos)
+            # print(size)
+            # print(pos)
+            # print("")
             i.pushList(tempList)
 
             tempList.clear()
             i.dumpIntoList(tempList, n)
-            moves.append(size - (n-pos))
+            # print(size)
+            # print(pos)
+            # print("")
+            moves.append( size - n + 1 )
             i.pushList(tempList)
             
         n -= 1
         
         
-    i.print()
+    #i.print()
     moves.append(0)
-    for m in moves:
-        print(m, end=' ')
-    print("")
-    print("")
+    for m in range (len(moves)-1):
+        print(moves[m], end=' ')
+    print(moves[len(moves)-1])
     
     
 

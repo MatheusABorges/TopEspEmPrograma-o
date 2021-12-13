@@ -36,6 +36,13 @@ class Pilha:
             print(node.value, end=", ")
             node = node.nextNode
         print(node.value)
+        
+    def printSpaced(self):
+        node = self.nodes
+        for i in range (self.size-1):
+            print(node.value, end=" ")
+            node = node.nextNode
+        print(node.value)      
     
     #dumps another stack into the object that calls this method
     def dump(self, stack, n):

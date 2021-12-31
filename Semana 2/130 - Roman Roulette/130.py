@@ -1,7 +1,7 @@
 def populate(n):
     aux = []
     for i in range(n):
-        aux.append(str(i))
+        aux.append(str(i+1))
     return aux
 
 def replace(vector, i, s):
@@ -19,10 +19,10 @@ def increase(i, n):
 def decrease(i, n):
     return (i-1)%n
 
-def getLastSurvivor(vec):
+def getLastSurvivor(vec, n):
     for i in range( len( vec ) ):
         if(vec[i] != '-'):
-            return i+1
+            return (n - int(vec[i]) + 2) if int(vec[i]) != 1 else 1
 
 n, k = input().split(" ")
 n = int(n)
@@ -35,7 +35,7 @@ while(n!=0 or k!=0):
     cont = 0
     while(n > 1):
         
-        print(i)
+        #print(i)
         while(cont<k):
             if(people[i] != '-'):
                 cont += 1
@@ -45,7 +45,7 @@ while(n!=0 or k!=0):
         
         died = decrease(i,size)
         people = replace(people, died, '-')
-        print(people)
+        #print(people)
         cont = 0
         n -= 1
         
@@ -62,11 +62,11 @@ while(n!=0 or k!=0):
         
         i = increase(died, size)
         cont = 0
-        print(people)
-        print("")
+        #print(people)
+       # print("")
     
         
-    print(getLastSurvivor(people))
+    print(getLastSurvivor(people, size))
     
 
     
